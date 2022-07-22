@@ -1,5 +1,10 @@
+
+
 import datetime
 import random
+import string
+
+list = ["client","leader","location","law","organization","tooth","solution","player","artisan","improvement","platform","customer","quantty","chest","outcome","conclusion","injury","investment","category","judgment","director","goal","cigarette","mom","history","woman","disk","courage","data","department","cousin","thing","memory","speech","library","disaster","engineering","measurement","volume","photo","ladder","payment","movie","efficiency","extent","painting","imagination","hall","grandmother","language"]
 
 def guessGame():
     
@@ -27,6 +32,48 @@ def guessGame():
             print("Press 'p' to play again.")
         playAgain = input()
     
+
+def validWord(list):
+    word = random.choice(list)
+    while "-" in word or " " in word:
+        word = random.choice(list)
+         
+    return word.upper()
+
+def hangman():
+    word = validWord(list)
+    wordLetters = set(word)
+    alphabet = set(string.ascii_uppercase)
+    usedLetters = set()
+    lives = 6
+    
+    print("\nWelcome to the 'Hangman' game\n")
+        
+    while len(wordLetters)>0 and lives>0:
+        
+        print("You have",lives,"lives left and You have used these letters: "," ".join(usedLetters))
+        
+        print(wordLetters)
+        wordVisibility = [letter if letter in usedLetters else "-" for letter in word]
+        print("Current word: "," ".join(wordVisibility))
+        
+        userLetters = input("Enter a letter: ").upper()
+        if userLetters in alphabet - usedLetters:
+            usedLetters.add(userLetters)
+            if userLetters in wordLetters:
+                wordLetters.remove(userLetters)
+            else:
+                
+                lives = lives - 1
+                print("\nNot in the word. Try again")
+        elif userLetters in usedLetters:
+            print("You have used this letter. Try again: ")
+        else:
+            print("Invalid input. Try again: ")
+    if lives == 0:
+        print("Sorry you died")
+    else:
+        print("You have guessed the word '",word,"' correcly")
 
 time = datetime.datetime.now()
 print(time)
@@ -56,8 +103,8 @@ else:
         guessGame()
         
     elif gamenum == 2:
-        def hangman():
-            pass
+        hangman()
+        
     elif gamenum == 3:
         def ttt():
             pass
