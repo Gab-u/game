@@ -1,36 +1,39 @@
-
+#the code below is for creating three games using python; guessing game, hangman and tictactoe.
 
 import datetime
 import random
 import string
 
+playAgain = "P"
+
+#list of words used in hangman. It will be stored in a different file to hold much more words. This was just for sampling. 
 list = ["client","leader","location","law","organization","tooth","solution","player","artisan","improvement","platform","customer","quantty","chest","outcome","conclusion","injury","investment","category","judgment","director","goal","cigarette","mom","history","woman","disk","courage","data","department","cousin","thing","memory","speech","library","disaster","engineering","measurement","volume","photo","ladder","payment","movie","efficiency","extent","painting","imagination","hall","grandmother","language"]
 
 def guessGame():
     
-    setNumber = random.randint(1,50)
-    playAgain = "p"
+    setNumber = random.randint(1,50) #random number chosen by computer
+         #looping through the game if player wants to play again
     print("\nWelcome to the 'Guess the number' game\n")
-    while playAgain == "p":
-        while True:
-            try:
-                guess = int(input("Guess a number between 1 - 50:\n"))
-            except ValueError:
-                print("Invalid choice: Try again:")
-            else:
-                break
-        
-        while setNumber != guess:
-            if guess > setNumber:
-                print("Oops! That's too high. Try again: ")
-                guess = int(input())
-            else:
-                print("Oops! That's too low. Try again: ")
-                guess = int(input())
+    
+    while True:
+        try:
+            guess = int(input("Guess a number between 1 - 50:\n"))  #prompt input number from user
+        except ValueError:
+            print("Invalid choice: Try again:")
         else:
-            print("Congratulations!! You guessed it right.")
-            print("Press 'p' to play again.")
-        playAgain = input()
+            break
+        
+    while setNumber != guess:
+        if guess > setNumber:
+            print("Oops! That's too high. Try again: ")
+            guess = int(input())
+        else:
+            print("Oops! That's too low. Try again: ")
+            guess = int(input())
+    else:
+        print("Congratulations!! You guessed it right.")
+        print("Press 'p' to play again.")
+    
     
 
 def validWord(list):
@@ -101,10 +104,10 @@ while gamenum >3:
 else:
     if gamenum == 1:
         guessGame()
-        
+            
     elif gamenum == 2:
         hangman()
-        
+           
     elif gamenum == 3:
         def ttt():
             pass
