@@ -55,7 +55,7 @@ def hangman():
         
         print("You have",lives,"lives left and You have used these letters: "," ".join(usedLetters))
         
-        print(wordLetters)
+        #print(wordLetters)
         wordVisibility = [letter if letter in usedLetters else "-" for letter in word]
         print("Current word: "," ".join(wordVisibility))
         
